@@ -1,0 +1,1 @@
+Bu proje, otizm spektrum bozukluğu olan çocukların gelişimini takip etmek ve ailelerine rehberlik sağlamak amacıyla geliştirilmiştir. Yapay zeka teknolojilerini kullanarak davranış analizi, ilerleme takibi ve kişiselleştirilmiş öneriler sunar.
