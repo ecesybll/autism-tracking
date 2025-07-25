@@ -7,7 +7,7 @@ from services.ai_service import generate_recommendation
 def get_children_options():
     try:
         conn = sqlite3.connect(DB_PATH)
-        df = pd.read_sql_query("SELECT id, name FROM children", conn)
+        df = pd.read_sql_query("SELECT * FROM children", conn)
         conn.close()
         return df
     except Exception as e:
@@ -25,7 +25,12 @@ def recommendation_engine():
         extra_notes = st.text_area("Ek Notlar (isteğe bağlı)", help="Özel ihtiyaç, ilgi veya açıklama ekleyebilirsiniz.")
         submitted = st.form_submit_button("AI'dan Öneri Al")
         if submitted:
+            # Seçilen çocuğun tüm bilgilerini al
+            child_row = children_df[children_df['name'] == child_name].iloc[0]
+            age = child_row['age']
+            strengths = child_row.get('strengths', '')
+            challenges = child_row.get('challenges', '')
             with st.spinner("AI öneri üretiyor..."):
-                result = generate_recommendation(child_name, extra_notes)
+                result = generate_recommendation(child_name, age, strengths, challenges, extra_notes)
             st.success("AI Önerisi:")
             st.write(result)

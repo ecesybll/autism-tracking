@@ -16,10 +16,13 @@ Veri: {activity_data}
     except Exception as e:
         return f"AI analizinde hata oluştu: {e}"
 
-def generate_recommendation(child_name: str, extra_notes: str = "") -> str:
+def generate_recommendation(child_name: str, age: int, strengths: str = "", challenges: str = "", extra_notes: str = "") -> str:
     prompt = f"""
 Çocuğa özel gelişim ve etkinlik önerileri üret:
 - Çocuğun adı: {child_name}
+- Yaşı: {age}
+- Güçlü yönleri: {strengths}
+- Zorlukları: {challenges}
 - Ek bilgiler: {extra_notes}
 
 Kısa, uygulanabilir ve kişiselleştirilmiş öneriler sun.
