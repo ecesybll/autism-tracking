@@ -3,3 +3,12 @@ flask
 pandas
 plotly
 google-generativeai
+flask_cors
+werkzeug
+pyjwt
+PyPDF2
+python-docx
+pdfplumber
+PyMuPDF
+pytesseract
+reportlab
