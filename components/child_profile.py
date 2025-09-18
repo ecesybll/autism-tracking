@@ -28,7 +28,30 @@ def add_child(name: str, age: int, diagnosis_date: str, strengths: str, challeng
         st.error(f"Çocuk eklenirken hata oluştu: {e}")
 
 def child_profile():
-    st.subheader("Çocuk Profilleri")
+    st.markdown(
+        """
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            /* Başlık ve alt başlık stilleri */
+            h2, h3 {
+                color: #263859;
+            }
+            /* Genişletilebilir alan (Expander) başlıkları için stil */
+            .st-emotion-cache-163k6s4 > div > div > p {
+                font-size: 1.1em;
+                font-weight: bold;
+                color: #263859;
+            }
+            /* Genel ikon stilleri */
+            .fas, .fa-plus-circle, .fa-user-plus {
+                margin-right: 8px;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+        
+    st.markdown("## <i class='fas fa-users'></i> Çocuk Profilleri", unsafe_allow_html=True)
     with st.expander("Yeni Çocuk Ekle", expanded=False):
         with st.form("add_child_form"):
             name = st.text_input("Ad Soyad", max_chars=100)
@@ -43,8 +66,9 @@ def child_profile():
                 else:
                     add_child(name, age, str(diagnosis_date), strengths, challenges)
     st.markdown("---")
-    st.write("### Kayıtlı Çocuklar")
+    st.markdown("### <i class='fas fa-user-check'></i> Kayıtlı Çocuklar", unsafe_allow_html=True)
     df = get_children()
+    
     if not df.empty:
         st.dataframe(df)
     else:
