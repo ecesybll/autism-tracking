@@ -44,7 +44,54 @@ def save_progress_record(child_id, metric, value, date, notes):
         return False
 
 def progress_visualizer():
-    st.subheader("📊 İlerleme Raporları ve Grafikler")
+    st.markdown(
+        """
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            /* Sekme başlıkları stilleri */
+            .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
+                font-size: 1.1em;
+                white-space: nowrap;
+                margin-bottom: 0;
+            }
+            
+            /* Aktif sekme için metin ve çizgi rengini zorla değiştir */
+            .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {
+                color: #326aa7 !important;
+            }
+            
+            /* Aktif olmayan sekme için metin rengini ayarla */
+            .stTabs [data-baseweb="tab-list"] button[aria-selected="false"] {
+                color: #6c757d !important;
+            }
+            /* Genel ikon stilleri */
+            .fas {
+                margin-right: 8px;
+            }
+            /* Metrik kutucukları için ikonlar */
+            .st-emotion-cache-1f81t0c.e1nzilvr4 > div > div > p {
+                font-size: 1em;
+                font-weight: bold;
+            }
+            .st-emotion-cache-1f81t0c.e1nzilvr4 .st-emotion-cache-p3s3us {
+                display: flex;
+                align-items: center;
+            }
+            .st-emotion-cache-1f81t0c.e1nzilvr4 .st-emotion-cache-p3s3us svg {
+                margin-right: 8px;
+                font-size: 1.2em;
+            }
+            /* Başarılı ve Hata mesajları için özel ikon renkleri */
+            div[data-testid="stStatusIcon-success"] svg { color: #28a745; }
+            div[data-testid="stStatusIcon-error"] svg { color: #dc3545; }
+            div[data-testid="stStatusIcon-warning"] svg { color: #ffc107; }
+
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown("## <i class='fas fa-chart-line'></i> İlerleme Raporları ve Grafikler", unsafe_allow_html=True)
     
     children_df = get_children_options()
     if children_df.empty:
@@ -52,10 +99,10 @@ def progress_visualizer():
         return
     
     # Sekmeler oluştur
-    tab1, tab2, tab3 = st.tabs(["📝 Veri Girişi", "📈 Grafikler", "📋 Raporlar"])
+    tab1, tab2, tab3 = st.tabs(["Veri Girişi", "Grafikler", "Raporlar"])
     
     with tab1:
-        st.write("### İlerleme Verisi Girişi")
+        st.markdown("### <i class='fas fa-keyboard'></i> İlerleme Verisi Girişi", unsafe_allow_html=True)
         
         with st.form("progress_form"):
             col1, col2 = st.columns(2)
@@ -88,7 +135,7 @@ def progress_visualizer():
                     st.rerun()
     
     with tab2:
-        st.write("### Gelişim Grafikleri")
+        st.markdown("### <i class='fas fa-chart-pie'></i> Gelişim Grafikleri", unsafe_allow_html=True)
         
         child_name_graph = st.selectbox("Çocuk Seç", children_df['name'], key="graph_child_select")
         child_id_graph = int(children_df[children_df['name'] == child_name_graph]['id'].values[0])
@@ -151,14 +198,14 @@ def progress_visualizer():
                 st.plotly_chart(fig, use_container_width=True)
             
             # Veri tablosu
-            st.write("### 📋 Ham Veri")
+            st.markdown("### <i class='fas fa-table'></i> Ham Veri", unsafe_allow_html=True)
             st.dataframe(df, use_container_width=True)
             
         else:
             st.info("Seçili çocuk için ilerleme verisi yok. Önce 'Veri Girişi' sekmesinden veri ekleyin.")
     
     with tab3:
-        st.write("### 📋 İlerleme Raporları")
+        st.markdown("### <i class='fas fa-file-invoice'></i> İlerleme Raporları", unsafe_allow_html=True)
         
         child_name_report = st.selectbox("Çocuk Seç", children_df['name'], key="report_child_select")
         child_id_report = int(children_df[children_df['name'] == child_name_report]['id'].values[0])
@@ -189,7 +236,7 @@ def progress_visualizer():
             st.markdown("---")
             
             # Metrik bazlı analiz
-            st.write("### 📊 Metrik Bazlı Analiz")
+            st.markdown("### <i class='fas fa-chart-bar'></i> Metrik Bazlı Analiz", unsafe_allow_html=True)
             
             for metric in df_report['metric'].unique():
                 metric_data = df_report[df_report['metric'] == metric]
@@ -226,7 +273,7 @@ def progress_visualizer():
                 st.markdown("---")
             
             # Son kayıtlar
-            st.write("### 📝 Son Kayıtlar")
+            st.markdown("### <i class='fas fa-history'></i> Son Kayıtlar", unsafe_allow_html=True)
             recent_data = df_report.tail(10)
             st.dataframe(recent_data[['date', 'metric', 'value', 'notes']], use_container_width=True)
             

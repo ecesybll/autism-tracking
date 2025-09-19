@@ -1,0 +1,224 @@
+/* Sidebar Genişliğini ve Genel Görünümü Ayarlama */
+.st-emotion-cache-1c7y335 {
+    width: 250px !important;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Sidebarın daraldığında da genişliğini korumak için */
+.st-emotion-cache-1c7y335:has(> button:first-child):not(:has(> button:nth-child(2)[aria-label="Sidebar hide"])):has(> button:nth-child(2)[aria-label="Sidebar show"]) {
+    width: 250px !important;
+}
+
+/* Başlıklar için stil */
+.sidebar-section-header {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+/* Profil Bilgileri Bölümü */
+.profile-info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #2d2f31;
+}
+
+.profile-info-item .icon {
+    font-size: 1.1em;
+    margin-right: 10px;
+    color: #6c757d;
+}
+
+/* Ayraç Çizgisi */
+hr {
+    border: 0;
+    border-top: 1px solid #e9ecef;
+    margin: 15px 0;
+}
+
+/* Çıkış Yap Butonu Kapsayıcısı */
+.logout-button-container {
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 0 20px;
+}
+
+/* Çıkış Yap Butonu için stil */
+.stButton>button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    padding: 10px;
+}
+
+/* Butonun üzerine gelindiğinde (hover) stili */
+.stButton>button:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* Navigasyon Radio Butonları */
+.st-emotion-cache-1g6go4k>label {
+    font-size: 1em;
+    font-weight: 400;
+    color: #495057;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+/* Navigasyon Öğelerinin İkonları (İkinci görseldeki dairesel simgeler için) */
+.st-emotion-cache-1g6go4k>label:before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    background-color: transparent;
+    border: 1px solid #6c757d;
+    border-radius: 50%;
+}
+
+/* Seçili Navigasyon Öğesi */
+.st-emotion-cache-1g6go4k>label:has(input:checked) {
+    color: #2d2f31;
+    font-weight: 500;
+}
+
+/* Seçili Navigasyon Öğesinin İkonu */
+.st-emotion-cache-1g6go4k>label:has(input:checked):before {
+    background-color: #585e64;
+    border-color: #71767c;
+    content: "\2022";
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    line-height: 1;
+}
+
+/* Navigasyon öğesinin üzerine gelindiğinde stil */
+.st-emotion-cache-1g6go4k>label:hover {
+    background-color: #e9ecef;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Sidebar Navigasyonu için Modern Buton Stili */
+div[role="radiogroup"]>label {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    padding: 10px 15px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+/* Navigasyon Radio Butonları için modern buton stili */
+div[role="radiogroup"]>label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    padding: 10px 15px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 400;
+    color: #99bbdd;
+}
+
+/* Hover (üzerine gelme) stili - Daha belirgin bir gri tonu */
+div[role="radiogroup"]>label:hover {
+    background-color: #dee2e6;
+    border-radius: 5px;
+}
+
+/* Seçili butonu vurgulama */
+div[role="radiogroup"]>label:has(input:checked) {
+    background-color: #e6f7ff;
+    color: #326aa7;
+    font-weight: 600;
+}
+
+/* Seçili butondaki ikonu vurgulama */
+div[role="radiogroup"]>label:has(input:checked)::before {
+    color: #326aa7;
+}
+
+/* İkonları eklemek için pseudo-element kullanın */
+div[role="radiogroup"]>label::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 15px;
+    font-size: 20px;
+    transition: all 0.2s ease-in-out;
+    color: #6c757d;
+}
+
+/* Her bir radio butonu için özel ikon belirleme */
+div[role="radiogroup"]>label:nth-of-type(1)::before {
+    content: "\f015";
+    /* Ev ikonu */
+}
+
+div[role="radiogroup"]>label:nth-of-type(2)::before {
+    content: "\f124";
+    /* Çocuk ikonu */
+}
+
+div[role="radiogroup"]>label:nth-of-type(3)::before {
+    content: "\f484";
+    /* Beyin ikonu */
+}
+
+div[role="radiogroup"]>label:nth-of-type(4)::before {
+    content: "\f53f";
+    /* Palet ikonu */
+}
+
+div[role="radiogroup"]>label:nth-of-type(5)::before {
+    content: "\f200";
+    /* Çizgi grafik ikonu */
+}
+
+div[role="radiogroup"]>label:nth-of-type(6)::before {
+    content: "\f0eb";
+    /* Ampul ikonu */
+}
+
+/* Streamlit'in kendi radyo düğme ikonunu gizleme */
+div[role="radiogroup"]>label>div:first-child {
+    display: none;
+}
+
+/* İkonların metinle hizalanması için genel sınıf */
+.icon {
+    margin-right: 8px;
+    color: #71bed1;
+}
+
+/* Giriş formu ikonları */
+.login-icon {
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+/* Kayıt formu ikonları */
+.register-icon {
+    font-size: 1.2em;
+    vertical-align: middle;
+}

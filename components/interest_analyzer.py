@@ -109,17 +109,56 @@ def extract_text_from_txt(txt_file):
         return None
 
 def interest_analyzer():
-    st.subheader("İlgi Alanı Analizi (AI Destekli)")
+    st.markdown(
+        """
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            /* Sekme başlıkları stilleri */
+            .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
+                  font-size: 1.1em;
+                  white-space: nowrap;
+                  margin-bottom: 0;
+            }
+
+            /* Aktif sekme başlığının rengi ve kalınlığı */
+            .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {
+                  color: #326aa7 !important; /* Aktif sekmenin metin rengi (ikon dahil) */
+            }
+        
+            /* Aktif olmayan sekme başlıklarının metin rengi */
+            .stTabs [data-baseweb="tab-list"] button[aria-selected="false"] {
+                  color: #6c757d !important;
+            }
+            /* İkonlar için genel stil */
+            .fas {
+                margin-right: 8px;
+            }
+            /* Başarılı durumlar için yeşil ikon */
+            .st-emotion-cache-163k6s4 {
+                color: #28a745;
+            }
+            /* Hata durumları için kırmızı ikon */
+            .st-emotion-cache-163k6s4 {
+                color: #dc3545;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    #st.subheader("İlgi Alanı Analizi (AI Destekli)")
+    st.markdown("## <i class='fa-solid fa-chart-simple'></i> İlgi Alanı Analizi", unsafe_allow_html=True)
+    
     children_df = get_children_options()
     if children_df.empty:
         st.info("Önce çocuk eklemelisiniz.")
         return
     
     # Sekmeler oluştur
-    tab1, tab2 = st.tabs(["📝 Manuel Giriş", "📄 Rapor Yükle"])
+    tab1, tab2 = st.tabs(["Manuel Giriş", "Rapor Yükle"])
     
     with tab1:
-        st.write("### Manuel Aktivite Verisi Girişi")
+        st.markdown("### <i class='fas fa-keyboard'></i> Manuel Aktivite Verisi Girişi", unsafe_allow_html=True)
         with st.form("interest_form"):
             child_name = st.selectbox("Çocuk", children_df['name'])
             activity_data = st.text_area("Aktivite/Etkileşim Verisi", help="Çocuğun son zamanlardaki aktiviteleri, oyunları, hobileri vb.")
@@ -139,7 +178,7 @@ def interest_analyzer():
                             st.info("Demo modunda çalışıyoruz. Gerçek AI analizi için API anahtarını ayarlayın.")
     
     with tab2:
-        st.write("### Rapor Dosyası Yükleme")
+        st.markdown("### <i class='fas fa-file-alt'></i> Rapor Dosyası Yükleme", unsafe_allow_html=True)
         st.info("📋 **En İyi Desteklenen Formatlar:** Word (DOCX) ve TXT")
         st.warning("⚠️ **PDF Dosyaları:** Bazı PDF'ler okunamayabilir. Word veya TXT formatına çevirmeniz önerilir.")
         
